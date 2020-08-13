@@ -1,0 +1,49 @@
+<?php 
+namespace DummyNamespace\DummyClass; 
+
+use Core\Plugin\Plugin;
+ 
+class DummyClass extends Plugin
+{
+	/**
+	 * Name of Plugin.
+	 * 
+	 * @var string
+	 */
+    protected $name = 'DummySlug'; 
+
+	/**
+	 * Display name of Plugin.
+	 * 
+	 * @var string
+	 */
+    protected $label = 'DummySlug';  
+
+	/**
+	 * Description of Plugin.
+	 * 
+	 * @var string
+	 */
+    protected $description = 'DummySlug plugin';  
+
+	/**
+	 * Version of Plugin.
+	 * 
+	 * @var string
+	 */
+    protected $version = '0.1.0'; 
+
+	/**
+	 * Fullname of plugin author.
+	 * 
+	 * @var string
+	 */
+    protected $author = 'Esmaiel Zareh';  
+
+	/**
+	 * Email of plugin author.
+	 * 
+	 * @var string
+	 */
+    protected $email = 'zarehesmaiel@gmail.com';    
+}

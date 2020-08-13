@@ -1,0 +1,12 @@
+<?php  
+namespace Component\DummyNamespace;
+   
+use Core\Language\Translate;
+
+class DummyNamespaceTranslation extends Translate
+{   
+    protected $guarded = [];
+    protected $casts = [   
+    	'seo'    => 'collection',
+    ];  
+}

@@ -1,0 +1,23 @@
+<?php
+namespace Component\DummyNamespace;     
+
+class DummyNamespaceInstaller
+{       
+    /**
+     * Your component installation.
+     * 
+     * @return void
+     */
+    public function install()
+    {        
+    } 
+
+    /**
+     * Your uninstaller.
+     *
+     * @return void
+     */
+    public function uninstall()
+    {     
+    } 
+}

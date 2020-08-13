@@ -1,0 +1,36 @@
+<?php  
+namespace Component\DummyNamespace; 
+
+use Illuminate\Database\Eloquent\Model;
+use Core\Language\Concerns\HasTranslation;
+use Illuminate\Database\Eloquent\SoftDeletes; 
+use Core\Crud\Concerns\HasCustomImage;
+use Core\Language\Contracts\Multilingual;
+use Core\User\Contracts\Ownable;
+use Core\User\Concerns\HasOwner; 
+use Core\Crud\Contracts\Publicatable;
+use Core\Crud\Concerns\Publishing;
+use Core\Crud\Contracts\SearchEngineOptimize as SEO;
+use Core\Crud\Concerns\SearchEngineOptimizeTrait as SEOTrait;
+use Core\Section\Contracts\Linkable;
+use Core\Section\Concerns\MultilingualPermalink as Permalink;
+use Core\Section\Traits\Sectionable;
+
+class DummyNamespace extends Model implements Multilingual, Ownable, Publicatable , SEO, Linkable
+{ 
+    use HasTranslation, SoftDeletes, HasCustomImage, HasOwner, Publishing, SEOTrait, Permalink, Sectionable;
+ 
+    protected $guarded = [];
+    protected $casts = []; 
+
+    protected function getTranslationModel()
+    {
+        return new DummyNamespaceTranslation;
+    }
+ 
+    public function sectionName()
+    {
+        return 'DummySlug';
+    }  
+}
+

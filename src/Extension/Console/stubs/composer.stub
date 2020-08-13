@@ -1,0 +1,16 @@
+{
+    "name": "armin-cms/DummyExtension-DummyName",
+    "description": "DummyExtension extension for ArminCMS",
+    "version": "0.1.0",
+    "type": "package",
+    "license": "ArminCms",
+    "authors": [
+        {
+            "name": "Zareh Esmaiel",
+            "email": "zarehesmaiel@gmail.com"
+        }
+    ],
+    "require" : { 
+    },
+    "minimum-stability": "dev" 
+} 

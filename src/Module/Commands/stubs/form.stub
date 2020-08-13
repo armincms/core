@@ -1,0 +1,18 @@
+<?php 
+namespace Module\DummyClass;
+ 
+use Core\Module\Forms\InstanceForm; 
+use Core\Crud\Concerns\HasImage;
+
+class DummyClassForm extends InstanceForm 
+{ 
+	use HasImage;
+
+    protected $title = 'module::title.setting';
+ 
+
+    public function build()
+    {  
+        $this->raw('Insert your settings here ...!'); 
+    } 
+}

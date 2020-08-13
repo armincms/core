@@ -1,0 +1,66 @@
+<?php
+
+namespace Component\DummyNamespace\Http\Controllers;
+ 
+use Illuminate\Http\Request;
+use Core\Crud\MultilingualResource as Controller;
+use Component\DummyNamespace\Forms\DummyNamespaceForm;
+use Component\DummyNamespace\DummyNamespace;
+
+class DummyNamespaceController extends Controller
+{ 
+    /**
+     * Resource unique name
+
+     * @return  
+     */
+    public function name()
+    {
+        return 'DummySlug';
+    }
+
+    /**
+     * Resource label
+
+     * @return  
+     */
+    public function title()
+    { 
+        return 'DummySlug';
+    }
+
+    /**
+     * Resource table columns
+
+     * @return  
+     */
+    public function columns()
+    {
+        return [
+            'id' => [
+                'title' => armin_trans('armin::title.id')
+            ]
+        ];
+    }  
+
+    /**
+     * Resource model.
+
+     * @return  
+     */
+    public function model()
+    {
+        return new DummyNamespace;
+    } 
+
+    /**
+     * Resource form.
+
+     * @return  
+     */
+    public function form()
+    {
+        return new DummyNamespaceForm;
+    } 
+
+}

@@ -1,0 +1,1 @@
+@include('admin-crud::components.input-select', ['select' => []]) 

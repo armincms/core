@@ -1,0 +1,17 @@
+{
+    "name": "armin-cms/layout-module",
+    "description": "Basic layout for module rendering.",
+    "version": "0.1.0",
+    "type": "package",
+    "license": "ArminCms",
+    "authors": [
+        {
+            "name": "Zareh Esmaiel",
+            "email": "zarehesmaiel@gmail.com"
+        }
+    ],
+    "require": [],
+    "minimum-stability": "dev",
+    "group": "module",
+    "label": "Module Basic Layout"
+}

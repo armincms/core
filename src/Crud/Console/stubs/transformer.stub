@@ -1,0 +1,16 @@
+<?php 
+namespace DummyRootNamespace\Tables;
+
+use Core\Crud\Tables\MultilingualResourceTransformer; 
+
+class DummyClassTransformer extends MultilingualResourceTransformer
+{   
+    /**
+     * @param \Illuminate\Database\Eloquent\Model $resource
+     * @return array
+     */ 
+    public function toArray($resource)
+    {
+        return parent::toArray($resource);
+    }
+}

@@ -1,0 +1,57 @@
+<?php
+namespace Component\DummyNamespace;
+
+use Illuminate\Support\ServiceProvider;      
+use ArminResource;
+
+class DummyNamespaceServiceProvider extends ServiceProvider
+{     
+    /**
+     * Indicates if loading of the provider is deferred.
+     *
+     * @var bool
+     */
+    protected $defer = false;
+
+    /**
+     * Define your route model bindings, pattern filters, etc.
+     * 
+     * @return void
+     */
+    public function boot()
+    {        
+        $this->loadViewsFrom(__DIR__.'/resources/views', 'DummySlug');
+        $this->loadTranslationsFrom(__DIR__.'/resources/lang', 'DummySlug');
+        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+        $this->map();     
+    } 
+
+    /**
+     * Register the service provider.
+     *
+     * @return void
+     */
+    public function register()
+    {     
+        ArminResource::register('DummySlug', Http\Controllers\DummyNamespaceController::class);
+    } 
+
+    public function map()
+    {  
+        $this->mapAuthRoutes(); 
+    }
+
+    public function mapAuthRoutes()
+    { 
+        
+        $this->app['router']->prefix(config('admin.panel.path_prefix', 'panel'))
+                            ->middleware(config('admin.panel.middleware', ['web', 'auth:admin'])) 
+                            ->namespace(__NAMESPACE__.'\Http\Controllers')
+                            ->group(__DIR__.DS.'routes.php');
+
+       $this->app['router']/*->middleware(config('admin.api.middleware', ['web', 'auth:api']))*/
+                     ->prefix(config('admin.api.path_prefix', 'api'))
+                     ->namespace(__NAMESPACE__.'\Http\Controllers\Api') 
+                     ->group(__DIR__.DS.'api.php') ; 
+    } 
+}

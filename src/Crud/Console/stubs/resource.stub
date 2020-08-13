@@ -1,0 +1,54 @@
+<?php 
+namespace DummyNamespace;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Core\Crud\Resource;
+use DummyRootNamespace\DummyClass;
+use DummyRootNamespace\Forms\DummyClassForm;
+use DummyRootNamespace\Tables\DummyClassTransformer;
+use Core\Crud\Contracts\PublicatableResource;
+
+class DummyClassController extends Resource implements PublicatableResource
+{   
+    public function name()
+    {
+        return 'DummySlug';
+    }
+    public function title()
+    {
+        return 'DummySlug::title.content';
+    } 
+    public function columns()
+    {
+        return [
+            'id' => [
+                'title'      => armin_trans('armin::title.id'),
+                'searchable' => true
+            ], 
+        ];
+    }  
+    public function model()
+    {
+        return new DummyClass;
+    } 
+    public function form()
+    {
+        return new DummyClassForm;
+    } 
+
+    protected function getTableTransformer()
+    {
+        return new DummyClassTransformer($this);
+    }
+
+
+    public function getAvailableStatuses()
+    {
+        return ['draft', 'pending', 'published', 'scheduled'];
+    }  
+    public function getStatusColumn()
+    {
+        return 'status';
+    }  
+}

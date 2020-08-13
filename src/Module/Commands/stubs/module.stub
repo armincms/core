@@ -1,0 +1,50 @@
+<?php 
+namespace Module\DummyClass;
+
+use Core\Module\Module;
+use Annisa\Form\AnnisaBuilder;
+
+class DummyClass extends Module
+{    
+
+    /**
+     * Display name of module.
+     * 
+     * @var string
+     */
+    protected $label = 'DummyName module';
+
+    /**
+     * Description about moduel.
+     * 
+     * @var string
+     */
+    protected $description = 'DummyName module description';
+
+    /**
+     * Moduel author fullname.
+     * 
+     * @var string
+     */
+    protected $author = 'Esmaiel Zareh';
+
+    /**
+     * Module author email.
+     * 
+     * @var string
+     */
+    protected $email = 'zarehesmaiel@gmail.com';
+
+    /**
+     * Module Version.
+     * 
+     * @var string
+     */
+    protected $version = '0.1.0'; 
+
+    public function render() : string
+    { 
+
+        return view(module_hint_key("DummySlug::view"), ['__module' => $this])->render();
+    }
+}

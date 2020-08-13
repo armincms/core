@@ -1,0 +1,34 @@
+{
+    "name": "armincms/core",
+    "description": "A Laravel Nova tool.",
+    "keywords": [
+        "laravel",
+        "nova"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": ">=7.1.0"
+    },
+    "autoload": {
+        "files": [
+            "src/Plugin/functions.php",
+            "src/Option/helpers.php",
+            "src/Armin/functions.php"
+        ],
+        "psr-4": {  
+            "Core\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Core\\Armin\\ArminServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

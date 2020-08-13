@@ -1,0 +1,42 @@
+<?php  
+namespace DummyRootNamespace; 
+
+use Illuminate\Database\Eloquent\Model;
+use Core\Language\Concerns\HasTranslation;
+use Illuminate\Database\Eloquent\SoftDeletes; 
+use Core\Crud\Concerns\HasCustomImage;
+use Core\Language\Contracts\Multilingual;
+use Core\User\Contracts\Ownable;
+use Core\User\Concerns\HasOwner; 
+use Core\Crud\Contracts\Publicatable;
+use Core\Crud\Concerns\Publishing;
+use Core\Crud\Contracts\SearchEngineOptimize as SEO;
+use Core\Crud\Concerns\SearchEngineOptimizeTrait as SEOTrait;
+use Core\HttpSite\Contracts\Linkable;
+use Core\HttpSite\Concerns\HasMultilingualPermalink as Permalink; 
+use Core\HttpSite\Contracts\Hitsable;
+use Core\HttpSite\Concerns\Visiting;
+use Core\HttpSite\Concerns\IntractsWithSite;
+
+class DummyClass extends Model implements Multilingual, Ownable, Publicatable , SEO, Linkable, Hitsable
+{ 
+	use HasTranslation, SoftDeletes, HasCustomImage, HasOwner, Publishing, SEOTrait, Permalink, Visiting, IntractsWithSite;
+ 
+	protected $guarded = [];
+	protected $casts = []; 
+
+    protected function getTranslationModel()
+    {
+        return new DummyClassTranslation;
+    }
+
+    public function getImageAttribute()
+    {
+    	return $this->getImages()->first();
+    } 
+
+    public function component()
+    { 
+        return (new Components\Component); 
+    }
+}

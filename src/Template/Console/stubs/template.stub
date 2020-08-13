@@ -1,0 +1,4 @@
+<?php defined('LARAVEL_START') || exit('Access Denied ...!') ?> 
+@if($this->component->config('show_title', true))
+	<h1>Welcome Into Component: {!! $this->component->label() !!}</h1>
+@endif 

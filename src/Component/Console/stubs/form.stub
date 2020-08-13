@@ -1,0 +1,42 @@
+<?php 
+namespace Component\DummyNamespace\Forms; 
+
+use Core\Crud\Forms\MultilingualResourceForm;
+use Core\Crud\Concerns\HasImage;  
+use Core\Crud\Concerns\HasPublishing; 
+use Core\Crud\Concerns\HasSeo; 
+use Core\Crud\Contracts\TabForm; 
+use Core\Crud\Concerns\HasTextEditor;
+use Core\User\Concerns\HasOwnable;
+use Core\Crud\Concerns\HasPermalink;
+
+class DummyNamespaceForm extends MultilingualResourceForm implements TabForm
+{ 
+	use HasImage, HasPublishing, HasSeo, HasTextEditor, HasOwnable, HasPermalink;
+
+	protected $uploadPath = 'DummySlug';
+
+	protected $name = 'DummySlug';
+
+	public function build()
+	{        
+		 
+	}   
+
+	public function generalMap()
+	{ 
+		return [ 
+		];
+	}
+	public function translateMap()
+	{
+		return [
+		];
+	}
+	public function relationMap()
+	{
+		return [ 
+		];
+	}  
+
+}
