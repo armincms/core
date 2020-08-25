@@ -1,5 +1,5 @@
 <?php 
-namespace Armincms\Template\Concerns;
+namespace Core\Template\Concerns;
 
 use Illuminate\Support\HtmlString;
 

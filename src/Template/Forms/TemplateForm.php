@@ -1,5 +1,5 @@
 <?php 
-namespace Armincms\Template\Forms; 
+namespace Core\Template\Forms; 
 
 use Core\Crud\Forms\ResourceForm; 
 use Core\Crud\Concerns\HasSelectable;

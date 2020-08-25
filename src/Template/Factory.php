@@ -1,8 +1,8 @@
 <?php 
-namespace Armincms\Template; 
+namespace Core\Template; 
 
-use Armincms\Template\Template;
-use Armincms\Template\Repository; 
+use Core\Template\Template;
+use Core\Template\Repository; 
 
 class Factory
 {

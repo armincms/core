@@ -1,10 +1,10 @@
 <?php 
-namespace Armincms\Template\Http\Controllers;
+namespace Core\Template\Http\Controllers;
  
-use Armincms\Template\Tables\TemplateTransformer;
+use Core\Template\Tables\TemplateTransformer;
 use Illuminate\Http\Request; 
-use Armincms\Template\Template;
-use Armincms\Template\Forms\TemplateForm;
+use Core\Template\Template;
+use Core\Template\Forms\TemplateForm;
 use Core\Crud\Resource;
 use DataTables;
 

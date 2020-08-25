@@ -1,5 +1,5 @@
 <?php
-namespace Armincms\Template; 
+namespace Core\Template; 
 
 use Illuminate\Support\ServiceProvider;    
 

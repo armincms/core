@@ -188,15 +188,15 @@ if (! function_exists('crud_event')) {
      * 
      * @return object
      */
-    function crud_event($event, Model $resource, Authenticatable $user)
+    function crud_event($event, Model $resource, Authenticatable $user = null)
     {   
-    	if(! class_exists($event)) {
-    		$event = config('armin.crud.event.{$event}');
-    	}  
+    	// if(! class_exists($event)) {
+    	// 	$event = config('armin.crud.event.{$event}');
+    	// }  
 
-        return event(
-        	new $event($resource, $user)
-    	);
+     //    return event(
+     //    	new $event($resource, $user)
+    	// );
     }
 }
 
@@ -209,7 +209,7 @@ if (! function_exists('creating_resource')) {
      * 
      * @return \Core\Crud\Events\CreatingResource
      */
-    function creating_resource(Model $resource, Authenticatable $user)
+    function creating_resource(Model $resource, Authenticatable $user = null)
     {   
         return crud_event(\Core\Crud\Events\CreatingResource::class, $resource, $user);
     }
@@ -224,7 +224,7 @@ if (! function_exists('created_resource')) {
      * 
      * @return \Core\Crud\Events\CreatedResource
      */
-    function created_resource(Model $resource, Authenticatable $user)
+    function created_resource(Model $resource, Authenticatable $user = null)
     {   
         return crud_event(\Core\Crud\Events\CreatedResource::class, $resource, $user);
     }
@@ -239,7 +239,7 @@ if (! function_exists('editing_resource')) {
      * 
      * @return \Core\Crud\Events\EditingResource
      */
-    function editing_resource(Model $resource, Authenticatable $user)
+    function editing_resource(Model $resource, Authenticatable $user = null)
     {    
         return crud_event(\Core\Crud\Events\EditingResource::class, $resource, $user);
     }
@@ -254,7 +254,7 @@ if (! function_exists('updating_resource')) {
      * 
      * @return \Core\Crud\Events\UpdatingResource
      */
-    function updating_resource(Model $resource, Authenticatable $user)
+    function updating_resource(Model $resource, Authenticatable $user = null)
     {   
         return crud_event(\Core\Crud\Events\UpdatingResource::class, $resource, $user);
     }
@@ -269,7 +269,7 @@ if (! function_exists('updated_resource')) {
      * 
      * @return \Core\Crud\Events\UpdatedResource
      */
-    function updated_resource(Model $resource, Authenticatable $user)
+    function updated_resource(Model $resource, Authenticatable $user = null)
     {   
         return crud_event(\Core\Crud\Events\UpdatedResource::class, $resource, $user);
     }
@@ -284,7 +284,7 @@ if (! function_exists('destroying_resource')) {
      * 
      * @return \Core\Crud\Events\DestroyingResource
      */
-    function destroying_resource(Model $resource, Authenticatable $user)
+    function destroying_resource(Model $resource, Authenticatable $user = null)
     {   
         return crud_event(\Core\Crud\Events\DestroyingResource::class, $resource, $user);
     }
@@ -299,7 +299,7 @@ if (! function_exists('destroyed_resource')) {
      * 
      * @return \Core\Crud\Events\DestroyedResource
      */
-    function destroyed_resource(Model $resource, Authenticatable $user)
+    function destroyed_resource(Model $resource, Authenticatable $user = null)
     {   
         return crud_event(\Core\Crud\Events\DestroyedResource::class, $resource, $user);
     }
@@ -315,7 +315,7 @@ if (! function_exists('deleting_resource')) {
      * 
      * @return \Core\Crud\Events\DeletingResource
      */
-    function deleting_resource(Model $resource, Authenticatable $user)
+    function deleting_resource(Model $resource, Authenticatable $user = null)
     {   
         return crud_event(\Core\Crud\Events\DeletingResource::class, $resource, $user);
     }
@@ -330,7 +330,7 @@ if (! function_exists('deleted_resource')) {
      * 
      * @return \Core\Crud\Events\DeletedResource
      */
-    function deleted_resource(Model $resource, Authenticatable $user)
+    function deleted_resource(Model $resource, Authenticatable $user = null)
     {   
         return crud_event(\Core\Crud\Events\DeletedResource::class, $resource, $user);
     }
@@ -345,7 +345,7 @@ if (! function_exists('restoring_resource')) {
      * 
      * @return \Core\Crud\Events\RestoringResource
      */
-    function restoring_resource(Model $resource, Authenticatable $user)
+    function restoring_resource(Model $resource, Authenticatable $user = null)
     {   
         return crud_event(\Core\Crud\Events\RestoringResource::class, $resource, $user);
     }
@@ -360,7 +360,7 @@ if (! function_exists('restored_resource')) {
      * 
      * @return \Core\Crud\Events\RestoredResource
      */
-    function restored_resource(Model $resource, Authenticatable $user)
+    function restored_resource(Model $resource, Authenticatable $user = null)
     {   
         return crud_event(\Core\Crud\Events\RestoredResource::class, $resource, $user);
     }
@@ -375,7 +375,7 @@ if (! function_exists('publishing_resource')) {
      * 
      * @return \Core\Crud\Events\PublishingResource
      */
-    function publishing_resource(Model $resource, Authenticatable $user)
+    function publishing_resource(Model $resource, Authenticatable $user = null)
     {   
         return crud_event(\Core\Crud\Events\PublishingResource::class, $resource, $user);
     }
@@ -390,7 +390,7 @@ if (! function_exists('published_resource')) {
      * 
      * @return \Core\Crud\Events\PublishedResource
      */
-    function published_resource(Model $resource, Authenticatable $user)
+    function published_resource(Model $resource, Authenticatable $user = null)
     {   
         return crud_event(\Core\Crud\Events\PublishedResource::class, $resource, $user);
     }
@@ -405,7 +405,7 @@ if (! function_exists('unpublishing_resource')) {
      * 
      * @return \Core\Crud\Events\UnpublishingResource
      */
-    function unpublishing_resource(Model $resource, Authenticatable $user)
+    function unpublishing_resource(Model $resource, Authenticatable $user = null)
     {   
         return crud_event(\Core\Crud\Events\UnpublishingResource::class, $resource, $user);
     }
@@ -420,7 +420,7 @@ if (! function_exists('unpublished_resource')) {
      * 
      * @return \Core\Crud\Events\UnpublishedResource
      */
-    function unpublished_resource(Model $resource, Authenticatable $user)
+    function unpublished_resource(Model $resource, Authenticatable $user = null)
     {   
         return crud_event(\Core\Crud\Events\UnpublishedResource::class, $resource, $user);
     }
@@ -435,7 +435,7 @@ if (! function_exists('reading_resource')) {
      * 
      * @return \Core\Crud\Events\ReadingResource
      */
-    function reading_resource(Model $resource, Authenticatable $user)
+    function reading_resource(Model $resource, Authenticatable $user = null)
     {   
         return crud_event(\Core\Crud\Events\ReadingResource::class, $resource, $user);
     }
@@ -450,7 +450,7 @@ if (! function_exists('read_resource')) {
      * 
      * @return \Core\Crud\Events\ReadResource
      */
-    function read_resource(Model $resource, Authenticatable $user)
+    function read_resource(Model $resource, Authenticatable $user = null)
     {   
         return crud_event(\Core\Crud\Events\ReadResource::class, $resource, $user);
     }

@@ -1,5 +1,5 @@
 <?php 
-namespace Armincms\Template\Contracts;  
+namespace Core\Template\Contracts;  
  
 interface Template 
 {

@@ -1,7 +1,7 @@
 <?php  
 namespace Core\HttpSite\Http\Requests; 
 
-use Armincms\Template\Contracts\Repository;
+use Core\Template\Contracts\Repository;
 use Core\HttpSite\RouteHelper;  
 use Core\HttpSite\UrlHelper;  
 use Core\HttpSite\Site;  

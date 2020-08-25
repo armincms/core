@@ -126,7 +126,7 @@ class ArminServiceProvider extends ServiceProvider
         $this->app->register(\App\Providers\RouteServiceProvider::class);
         $this->app->register(\Core\User\UserServiceProvider::class);   
         $this->app->register(\Core\Component\ComponentServiceProvider::class);
-        // $this->app->register(\Armincms\Template\TemplateServiceProvider::class);
+        $this->app->register(\Core\Template\TemplateServiceProvider::class);
         $this->app->register(\Core\Layout\LayoutServiceProvider::class);     	
     } 
 

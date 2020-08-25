@@ -1,5 +1,5 @@
 <?php 
-namespace Armincms\Template;
+namespace Core\Template;
 
 use Illuminate\Database\Eloquent\Model; 
 use Illuminate\View\View;

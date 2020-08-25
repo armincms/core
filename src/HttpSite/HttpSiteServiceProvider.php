@@ -73,7 +73,7 @@ class HttpSiteServiceProvider extends ServiceProvider
             });
 
         $this->app->bind(
-            \Armincms\Template\Contracts\Repository::class, Repository\TemplateRepository::class
+            \Core\Template\Contracts\Repository::class, Repository\TemplateRepository::class
         );  
 
         $this->app->singleton('armin.site', function($app) {

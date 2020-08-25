@@ -2,8 +2,8 @@
 namespace Core\HttpSite\Repository; 
 
 
-use Armincms\Template\Contracts\Repository; 
-use Armincms\Template\Contracts\Template as TemplateInterface;
+use Core\Template\Contracts\Repository; 
+use Core\Template\Contracts\Template as TemplateInterface;
 
 class TemplateRepository implements Repository
 {   

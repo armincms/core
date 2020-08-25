@@ -1,5 +1,5 @@
 <?php
-namespace Armincms\Template\Tables;
+namespace Core\Template\Tables;
 
 use League\Fractal\TransformerAbstract;       
 use Core\Crud\Tables\HasAction;

@@ -1,7 +1,7 @@
 <?php 
 namespace Core\Document;
  
-use Armincms\Template\Contracts\Template;
+use Core\Template\Contracts\Template;
 use Core\Document\Contracts\HtmlMetaBuilder;
 use Core\Document\Concerns\IntractsWithPlugin; 
 use Core\Document\Concerns\IntractsWithModule;

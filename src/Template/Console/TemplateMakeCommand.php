@@ -1,5 +1,5 @@
 <?php 
-namespace Armincms\Template\Console;
+namespace Core\Template\Console;
 
 use Core\Layout\Console\LayoutMakeCommand;
 use Symfony\Component\Console\Input\InputOption;

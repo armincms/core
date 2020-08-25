@@ -1,9 +1,9 @@
 <?php 
-namespace Armincms\Template;
+namespace Core\Template;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Collection;
-use Armincms\Template\Template; 
+use Core\Template\Template; 
  
 
 class Repository  

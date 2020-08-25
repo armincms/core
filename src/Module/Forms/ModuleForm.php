@@ -8,7 +8,7 @@ use Core\Crud\Forms\ResourceForm;
 use Core\Language\Concerns\HasLanguage; 
 use Core\Module\Contracts\InstanceRepository;
 use Core\Module\ModuleInstance;
-use Armincms\Template\Concerns\HasThemeFacility;
+use Core\Template\Concerns\HasThemeFacility;
 use Core\Crud\Concerns\HasImage;
 
 class ModuleForm extends ResourceForm implements TabForm
