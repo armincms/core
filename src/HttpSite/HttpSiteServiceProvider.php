@@ -146,8 +146,10 @@ class HttpSiteServiceProvider extends ServiceProvider
                             });  
 
                             // pass alll related route of site
-                            if(! empty($site->directory()) || $site->name() == 'home') {
+                            if(! empty($site->directory())) {
                                 $router->get('{any}', "ComponentController")->where('any', '.*');  
+                            } else if($site->name() == 'home') {
+                                $router->get('{any}', "WebsiteController")->where('any', '.*');  
                             }
                         });  
                 });
