@@ -81,11 +81,7 @@ class HttpSiteServiceProvider extends ServiceProvider
         });
 
         $this->app->singleton('site', function($app) { 
-            return tap(new SiteManager(), function($manager) {
-                $manager->push('home', function($site) { 
-                    $site->fallback()->home();
-                });
-            }); 
+            return new SiteManager(); 
         });
 
         \Helper::registerAlias('Site', Facades\Site::class);
@@ -115,7 +111,13 @@ class HttpSiteServiceProvider extends ServiceProvider
         }   
  
         $this->app->booted(function($app) {  
-            $sites = app('site')->collect()->sortByDesc(function($site) {
+            $manager = tap(app('site'), function($manager) {
+                $manager->push('home', function($site) { 
+                    $site->fallback()->home();
+                });
+            });
+
+            $sites = $manager->collect()->sortByDesc(function($site) {
                 // push home site into last
                 return strlen($site->directory()) + ($site->name() === 'home' ?: time());
             }); 
@@ -146,16 +148,12 @@ class HttpSiteServiceProvider extends ServiceProvider
                             });  
 
                             // pass alll related route of site
-                            if(! empty($site->directory())) {
+                            if(! empty($site->directory()) && $site->name() !== 'home') {
                                 $router->get('{any}', "ComponentController")->where('any', '.*');  
-                            } else if($site->name() == 'home') {
-                                $router->get('{any}', "WebsiteController")->where('any', '.*');  
-                            }
+                            } 
                         });  
                 });
-            }); 
-
-
+            });   
 
             app('router')->fallback("Core\HttpSite\Http\Controllers\FallbackController");
             // dd(app('router')->getRoutes()->get('GET')); 
