@@ -22,7 +22,6 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Core\\Armin\\ArminServiceProvider"
             ]
         }
     },
