@@ -72,7 +72,7 @@ class TemplateForm extends ResourceForm
 	{
 		$template = $this->getModel()->name();
 
-		return option("_{$template}_plugins", collect())->all();
+		return collect(option("_{$template}_plugins"))->all();
 	}
 
 	public function path($file)

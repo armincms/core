@@ -58,7 +58,7 @@ class Template extends Layout
 
     public function plugins()
     {  
-        $plugins = option("_{$this->name()}_plugins", collect())->mapWithKeys(function($plugin) {
+        $plugins = collect(option("_{$this->name()}_plugins"))->mapWithKeys(function($plugin) {
             return [$plugin => '*'];
         })->all();
 
