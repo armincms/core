@@ -11,6 +11,11 @@ return [
 			'mutator' 	=> ['Core\HttpSite\Helpers\SlugMutator', 'name'],
 			'conditions'=> '[-\pL\pN\s/]+',  
 		],  
+		'%slug%' =>	[
+			'length' 	=> 1, 
+			'mutator' 	=> ['Core\HttpSite\Helpers\SlugMutator', 'slug'],
+			'conditions'=> '[-\pL\pN\s/]+',  
+		],  
 		'%fulldate%' =>	[ 
 			'length'	=> 3, 
 			'mutator' 	=> ['Core\HttpSite\Helpers\SlugMutator', 'fulldate'], 

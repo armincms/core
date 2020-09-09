@@ -4,9 +4,14 @@ namespace Core\HttpSite\Helpers;
 class SlugMutator
 { 
 
+    public static function slug($resource)
+    {
+    	return optional($resource)->slug;
+    }
+
     public static function name($resource)
     {
-    	return optional($resource)->alias;
+        return optional($resource)->alias;
     }
 
     public static function id($resource)
