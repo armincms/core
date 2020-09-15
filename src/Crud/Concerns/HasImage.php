@@ -1,6 +1,7 @@
 <?php 
 namespace Core\Crud\Concerns;
 
+use Illuminate\Support\Str;
 use Storage; 
 
 trait HasImage
@@ -137,7 +138,7 @@ trait HasImage
 
 		collect(Storage::disk('armin.image')->files($dir))->map(
 			function($file)use($valids) {
-				if(! str_contains($file, $valids->toArray())) {
+				if(! Str::contains($file, $valids->toArray())) {
 					Storage::disk('armin.image')->delete($file);
 				}   
 			}
