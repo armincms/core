@@ -60,7 +60,9 @@ class ModuleForm extends ResourceForm implements TabForm
             ) 
             ->pushScript('order-script', view('module::order-script', ['module' => $this->model]))
             ->field('select', 'layout', false, 'module::title.layout', 
-                layouts('module')->mapWithKeys(function($layout) {
+                layouts('module')->filter(function($layout) {
+                    return in_array('module', (array) $layout->group());
+                })->mapWithKeys(function($layout) {
                     return [$layout->name() => $layout->label() ?: $layout->name()];
                 })->all()
             )
