@@ -309,6 +309,6 @@ abstract class Module implements ModuleContract
     {
         $this->setContent($this->render());
 
-        return $this->layout()->display(['__module' => $this]); 
+        return (string) $this->layout()->display(['__module' => $this]); 
     } 
 }
