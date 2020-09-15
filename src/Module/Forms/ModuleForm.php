@@ -163,11 +163,12 @@ class ModuleForm extends ResourceForm implements TabForm
                 ]
             ], optional($this->model)->show_on?: '*', true)
             ->raw('</div><div class=four-columns>')
-            ->field('select', 'language', false, 'language::title.language', language()->filter(function($language, $active) { return !$active || $language->status; }
-                )->pluck('title', 'alias')->prepend(armin_trans('module::title.all'), '*')
+            ->field(
+                'select', 'language', false, 'language::title.language', language()->filter(function($language, $active) { return !$active || $language->status; }
+                )->pluck('title', 'alias')->prepend(armin_trans('module::title.all'), '*')->filter()
             ) 
             ->raw('</div><div class=four-columns>')
-            ->field('select', 'template', false, 'template::title.template', collect()->prepend(armin_trans('module::title.all'), '*'), [], ['multiple']
+            ->field('select', 'template', false, 'template::title.template', collect()->prepend(armin_trans('module::title.all'), '*')->filter(), ['*'], ['multiple']
             ) 
             ->raw('</div><div class="twelve-columns hidden" id=selection></div></div>'); 
     }
