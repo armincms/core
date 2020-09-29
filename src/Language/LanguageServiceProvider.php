@@ -59,14 +59,18 @@ class LanguageServiceProvider extends ServiceProvider
             \Mcamara\LaravelLocalization\Facades\LaravelLocalization::class
         ); 
 
-        \Config::set('language.locales.fa', [
-            'alias' => 'fa',
-            'title' => 'فارسی',
-            'name'  => 'fa',
-            'active'=> true,
-            'international' => 'Fa-Ir',
-            'direction'     => 'rtl',
-        ]);
+        $this->app->bind('armincms.locales', function() {
+            return [
+                'fa' => [
+                    'alias' => 'fa',
+                    'title' => 'فارسی',
+                    'name'  => 'fa',
+                    'active'=> true,
+                    'international' => 'Fa-Ir',
+                    'direction'     => 'rtl',
+                ],
+            ];
+        });
         
         require 'functions.php'; 
     }   
