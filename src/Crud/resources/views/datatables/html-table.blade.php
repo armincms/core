@@ -2,7 +2,7 @@
 	$table->parameters([
 		'sPaginationType' => 'full_numbers',
 		'sDom' => '<"dataTables_header"lfr>t<"dataTables_footer"ip>',
-		"language" => trans('dashboard::table'),
+		"language" => __('Table') ?? 'Table',
 		'pageLength' => 25,
 		'fnInitComplete' =>  "function(e) {  
 				$(this).closest('.dataTables_wrapper')
