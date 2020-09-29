@@ -20,9 +20,7 @@ class LanguageServiceProvider extends ServiceProvider
 
         $this->app->booted(function() {  
             LaravelLocalization::setLocale(default_locale());  
-        });  
-
-        $this->registerDirectives();
+        });   
     } 
 
     /**
@@ -59,34 +57,19 @@ class LanguageServiceProvider extends ServiceProvider
             \Mcamara\LaravelLocalization\Facades\LaravelLocalization::class
         ); 
 
-        \Config::set('language.locales.fa', [
-            'alias' => 'fa',
-            'title' => 'فارسی',
-            'name'  => 'fa',
-            'active'=> true,
-            'international' => 'Fa-Ir',
-            'direction'     => 'rtl',
-        ]);
+        $this->app->singleton('armincms.locales', function() {
+            return [
+                'fa' => [
+                    'alias' => 'fa',
+                    'title' => 'فارسی',
+                    'name'  => 'fa',
+                    'active'=> true,
+                    'international' => 'Fa-Ir',
+                    'direction'     => 'rtl',
+                ]
+            ];
+        }); 
         
         require 'functions.php'; 
-    }   
-     
-    /**
-     * Register the translation line loader.
-     *
-     * @return void
-     */
-    protected function registerLoader()
-    { 
-        $this->app->singleton('translation.loader', function ($app) { 
-            return new FileLoader($app['files'], $app['path.lang']);
-        });  
-    }
-
-    protected function registerDirectives()
-    { 
-        \Blade::directive('trans', function($expression) { 
-            return '<?php echo armin_trans(' .$expression. '); ?>';
-        });
-    }
+    }    
 }

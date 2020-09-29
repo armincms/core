@@ -25,7 +25,7 @@ if (! function_exists('configured_locales')) {
             return ! $active || (boolean) array_get($locale, 'active', true);
         };
 
-        return collect(config('language.locales'))->keyBy('alias')->filter($filter)->toArray();
+        return collect(app('armincms.locales'))->keyBy('alias')->filter($filter)->toArray();
     }
 }  
 
