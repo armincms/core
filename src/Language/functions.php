@@ -86,6 +86,7 @@ if (! function_exists('armin_trans')) {
      */
     function armin_trans(string $string = null, $replace = [], $locale = null)
     {     
+        return trans($string, $replace, $locale);
         if(empty(trim($string))) {
             return trim($string);
         } else if(\Lang::has($string)) {
