@@ -29,6 +29,7 @@ class LayoutServiceProvider extends ServiceProvider
                     $finder->addNamespace(layout_hint_key($layout->name()), $layout->directory());
 
                     $loader->addNamespace(layout_hint_key($layout->name()), $layout->directory());
+                    $this->loadJsonTranslationsFrom($layout->directory());
                 });  
             });    
         }
