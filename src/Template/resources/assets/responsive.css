@@ -9,3 +9,5 @@
 @media (min-width:992px) and (max-width:1199px){.tl-hidden{display:none !important}}
 @media (min-width:1200px) and (max-width:1366px){.dl-hidden{display:none !important}}
 @media (min-width:1367px) {.dx-hidden{display:none !important}}
+@media (min-width: 720px) {.mt-p-0 {padding-left: 0px !important;padding-right: 0px !important;}}
+@media (max-width: 385px) {.valign-wrapper {display: block;}}
