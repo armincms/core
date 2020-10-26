@@ -2,7 +2,7 @@
 
 @if(strlen($slot)) 
 	<div id="{{ $section }}-container" 
-		class="{{ $section }}-container  {{ $width ?? '' }} {{ $section == 'mainwrapper' ? 'p-0' : '' }}"> 
+		class="{{ $section }}-container  {{ $width ?? '' }} {{ $section == 'mainwrapper' ? 'mt-p-0' : '' }}"> 
 		<div id="{{ $section }}-row" class="{{ $section }}-row {{ $section == 'mainwrapper' ? '' : 'row' }}">   
 			@yield("before-{$section}-slot")
 
