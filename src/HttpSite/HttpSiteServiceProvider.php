@@ -49,8 +49,10 @@ class HttpSiteServiceProvider extends ServiceProvider
         // $this->loadTranslationsFrom(__DIR__.'/resources/lang', 'http-site'); 
         // $this->loadMigrationsFrom(__DIR__.'/database/migrations'); 
         $this->mergeConfigFrom(__DIR__.'/config.php', 'http-site'); 
-        $this->map();  
-        $this->moduleConfiguration();
+        $this->map();   
+        $this->app->booted(function() {
+            return $this->moduleConfiguration();
+        });
     }
 
     /**
