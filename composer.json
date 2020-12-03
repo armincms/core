@@ -22,7 +22,11 @@
     "extra": {
         "laravel": {
             "providers": [
-            ]
+            ],
+            "aliases": {
+                "Image": "Intervention\\Image\\Facades\\Image",
+                "Imager": "Core\\Imager\\Facades\\ImagerFacad"
+            }
         }
     },
     "config": {
