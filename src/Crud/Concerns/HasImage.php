@@ -97,7 +97,7 @@ trait HasImage
 		$file = Storage::disk('armin.image')->path($src);
 		$destination = Storage::disk('armin.image')->path($dir); 
 
-		return \Imager::make($file)->customize($schemas)->storeAs($destination)->images()->map->name;
+		return app('armin.imager')->make($file)->customize($schemas)->storeAs($destination)->images()->map->name;
 	}
 
 	public function makeFilesCollection($files= [])
