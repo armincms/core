@@ -141,9 +141,9 @@ class HttpSiteServiceProvider extends ServiceProvider
                                 // sub routes fallback of site component
                                 $globPattern = preg_match_all('/\{([^}]+)\}/', $component->route(), $matches);
                                 $key = array_pop($matches[1]);
+                                $method = $component->method() ?? 'get';
 
-                                $router
-                                    ->get($component->route(), "ComponentController")
+                                call_user_func([$router, $method], $component->route(), "ComponentController")
                                     ->where($component->wheres())
                                     ->where($key ?: '*', '.*')
                                     ->name($component->name()); 

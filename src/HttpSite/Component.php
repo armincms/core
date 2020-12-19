@@ -132,5 +132,10 @@ abstract class Component extends Fluent
 		return [];
 	}
 
+	public function method()
+	{
+		return 'get';
+	}
+
 	abstract public function toHtml(Request $request, Document $document) : string;
 }
