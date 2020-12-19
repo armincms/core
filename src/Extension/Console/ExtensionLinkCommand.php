@@ -26,8 +26,13 @@ class ExtensionLinkCommand extends Command
      * @return void
      */
     public function handle()
-    {   
-        $path = $this->getPath($this->argument('extension'));
+    {    
+        collect((array) $this->getExtensions())->each([$this, 'linkPath']);
+    }
+
+    public function linkPath($extension)
+    {
+        $path = $this->getPath($extension);
 
         if (file_exists(public_path($path))) {
             $this->error("The \"public/{$path}\" directory already exists.");
@@ -38,6 +43,11 @@ class ExtensionLinkCommand extends Command
 
             $this->info("The [public/{$path}] directory has been linked.");  
         } 
+    }
+
+    public function getExtensions()
+    {
+        return $this->argument('extension') ?: ['plugin', 'module', 'template', 'layout'];
     }
 
     public function getPath($name)
@@ -54,7 +64,7 @@ class ExtensionLinkCommand extends Command
     protected function getArguments()
     {
         return [
-            ['extension', InputArgument::REQUIRED, 'Type of the extension'],
+            ['extension', InputArgument::OPTIONAL, 'Type of the extension'],
         ];
     }  
 }
