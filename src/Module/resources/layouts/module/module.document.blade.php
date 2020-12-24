@@ -11,14 +11,14 @@
 			} 			
 		}   
 	@endphp 
-	<div id="module{{ $this->__module->get('id') }}" class="module {{ implode(' ', $columns?: ['mp-1-1']) }} {{ $this->__module->config('_floating') }} {{ $this->__module->config('_direction') }} {{ $this->__module->config('_align') }} 
+	<div id="module{{ $this->__module->get('id') }}" class="module {{ implode(' ', $columns?: ['mp-1-1']) }}  mt-p-0 {{ $this->__module->config('_floating') }} {{ $this->__module->config('_direction') }} {{ $this->__module->config('_align') }} 
 		@if($effectType = $this->__module->config('_effect.effect')) wow {{ $effectType }}@endif"
 		@if($this->__module->config('_effect.effect'))
 			data-wow-duration="{{ $this->__module->config('_effect.delay', 250)/1000 }}s" 
 			data-wow-delay="{{ $this->__module->config('_effect.delay', 250)/1000 }}s" 
 			data-wow-iteration="{{ $this->__module->config('_effect.repeat', 1) == 'infinite' ? 99999 : 1 }}"
 		@endif>    
-		<div class="module{{ $this->__module->get('id') }} mp-1-1 mt-p-0"> 
+		<div class="module{{ $this->__module->get('id') }} w-100"> 
 			@if((boolean) $this->__module->config('_show_title') || (boolean) $this->__module->config('_show_description') || $this->__module->config('_show_icon'))
 				<div class="moduletitle">
 					@yield('before-icon')
