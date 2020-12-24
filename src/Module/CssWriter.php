@@ -54,7 +54,7 @@ class CssWriter
             } 
 
             foreach (config('armin.template.responsive') as $responsive => $setting) {
-                $this->cssGroup = $responsive;
+                $this->cssGroup = $responsive == 'mp' ? 'main' : $responsive;
 
                 $this->offsetCss(
                     'padding', "div.module{$instance->id}", $instance->getConfig("{$responsive}.padding")
