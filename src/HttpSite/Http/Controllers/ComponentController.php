@@ -19,7 +19,12 @@ class ComponentController extends SiteController
         } catch (ValidationException $exception) {   
             throw $exception; 
         } catch (Exception $exception) {   
-            $this->logError($exception);
+
+            if(optional(app('request')->user())->isDeveloper()) {  
+                throw $exception;
+            }
+
+            $this->logError($exception); 
 
             return $this->errorResponse($exception, $document);
         }      
@@ -31,34 +36,25 @@ class ComponentController extends SiteController
     }
 
     protected function errorResponse(Exception $exception, Document $document)
-    {  
-        $code = $exception->getCode();
+    {    
+        $message = $exception->getMessage().($exception->getCode() < 100 ? '#'.$exception->getCode() : '');
+        $this->status = $this->getStatusCode($exception);
 
-        if($code == 0 && method_exists($exception, 'getStatusCode')) {
-            $code = $exception->getStatusCode();
-        }
-
-        if(! is_superadmin() || $code < 500) { 
-            $this->status = $this->getStatusCode($exception);
-
-            return tap($exception->getMessage(), function($message) use ($document) { 
-                $document->title($message);
-                $document->description($message);
-                $document->meta('title', $message); 
-                $document->meta('description', $message); 
-                $document->meta('keywords', $message);
-            });   
-        } 
-        
-        throw $exception;
+        return tap($message, function($message) use ($document) {  
+            $document->title($message);
+            $document->description($message);
+            $document->meta('title', $message); 
+            $document->meta('description', $message); 
+            $document->meta('keywords', $message);
+        });  
     }
 
     public function getStatusCode(Exception $exception)
     { 
         if($exception instanceof ModelNotFoundException || $exception instanceof HttpException) { 
             return 404;
-        } 
+        }  
 
-        return (int) $exception->getCode()?: 500;
+        return (int) $exception->getCode() > 100 ? 500 : 400;
     }
 }
