@@ -20,7 +20,7 @@ class ComponentController extends SiteController
             throw $exception; 
         } catch (Exception $exception) {   
 
-            if(optional(app('request')->user())->isDeveloper()) {  
+            if(optional(app('request')->user())->isDeveloper() && $exception->getCode() >= 500) {  
                 throw $exception;
             }
 
