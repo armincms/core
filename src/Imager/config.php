@@ -12,7 +12,7 @@ return [
             'height'        => 480,
             'position'      => 'center', // crop postiion anchor
             'upsize'        => false, // cutting type
-            'compress'      => 75,
+            'compress'      => 90,
             'extension'     => null, // save extension
             'placeholder'   => image_placeholder(720, 480),
         ],
@@ -24,7 +24,7 @@ return [
             'height'        => 190,
             'position'      => 'center', // crop postiion anchor
             'upsize'        => false, // cutting type
-            'compress'      => 75,
+            'compress'      => 90,
             'extension'     => null, // save extension
             'placeholder'   => image_placeholder(320, 190),
         ],
@@ -36,7 +36,7 @@ return [
             'height'        => 50,
             'position'      => 'center', // crop postiion anchor
             'upsize'        => false, // cutting type
-            'compress'      => 75,
+            'compress'      => 90,
             'extension'     => null, // save extension
             'placeholder'   => image_placeholder(50, 50),
         ],
