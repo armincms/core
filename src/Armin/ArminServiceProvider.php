@@ -169,9 +169,9 @@ class ArminServiceProvider extends ServiceProvider
 
     public function appConfiguration()
     {
-        $merged = array_merge(config('app'), (array) require __DIR__.DS.'config.php');
+        // $merged = array_merge(config('app'), (array) require __DIR__.DS.'config.php');
         
-        \Config::set('app', $merged);  
+        // \Config::set('app', $merged);  
     }
 
     public function registerStorages()
