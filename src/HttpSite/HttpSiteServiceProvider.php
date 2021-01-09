@@ -86,6 +86,10 @@ class HttpSiteServiceProvider extends ServiceProvider
             return new SiteManager(); 
         });
 
+        $this->app->resolving('site', function() {
+            event(new Events\ServingFront);
+        });
+
         \Helper::registerAlias('Site', Facades\Site::class);
 
  
