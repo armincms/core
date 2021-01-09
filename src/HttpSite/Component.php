@@ -107,7 +107,7 @@ abstract class Component extends Fluent
 		return (boolean) $this->home;
 	} 
 
-	public function config($key, $default = null)
+	public function config($key = null, $default = null)
 	{
 		if(is_array($key)) {
 			$this->offsetSet(key($key), reset($key)); 
