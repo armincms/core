@@ -6,6 +6,7 @@ use Illuminate\Foundation\AliasLoader;
 use Yajra\DataTables\Html\Builder;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Illuminate\Contracts\Http\Kernel as HttpKernel;
 use Form;
 use Gate;
 
@@ -39,6 +40,9 @@ class CrudServiceProvider extends ServiceProvider
      */
     public function register()
     {  
+        $this->app->make(HttpKernel::class)
+                    ->pushMiddleware(Http\Middleware\ServeCore::class);
+
         $this->registerResourceRoutes();    
         
         $loader = AliasLoader::getInstance();
