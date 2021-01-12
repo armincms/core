@@ -151,6 +151,10 @@
 			$container.children('li:last').find('.edit-menu-item').click();
 			$(this).siblings('[role=deselect-all]').click();
 		});
+
+		$(document).on('click', 'li.dd-item > i', function() {
+			$(this).parent().remove()
+		})
 	});
 </script>
 @endpush
