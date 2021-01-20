@@ -27,8 +27,8 @@ class WebsiteController extends SiteController
     	if($title = trim($site->title())) {
     		return $title;
     	} 
-    	
-    	return option('_site_title', collect())->get(app()->getLocale());
+
+        return $this->setting('_app_name_'); 
     }
 
     public function getDescription($site)
@@ -37,11 +37,21 @@ class WebsiteController extends SiteController
     		return $description;
     	}
     	
-    	return option('_site_description', collect())->get(app()->getLocale());
+
+        return $this->setting('_app_description_'); 
     }
 
     public function getTags($site)
     {  
-    	return option('_site_tags', collect())->get(app()->getLocale());
+        return $this->setting('_app_tags_'); 
+    }
+
+    public function setting($key)
+    {
+        if(! isset($this->options)) {
+            $this->options = option()->tag('generals');
+        } 
+
+        return $this->options[$key] ?? '';
     }
 }
