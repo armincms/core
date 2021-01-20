@@ -28,7 +28,7 @@ class WebsiteController extends SiteController
     		return $title;
     	} 
 
-        return $this->setting('_app_name_'); 
+        return $this->setting('_app_title_'); 
     }
 
     public function getDescription($site)

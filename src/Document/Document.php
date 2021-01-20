@@ -6,6 +6,7 @@ use Core\Document\Contracts\Renderable;
 use Core\Document\Concerns\IntractsAdditionalData; 
 use Core\Document\Concerns\IntractsWithResponse; 
 use Illuminate\View\Compilers\CompilerInterface;
+use Armincms\Nova\General;
 
 abstract class Document extends CompilerEngine implements DocumentInterface, Renderable 
 {   
@@ -92,7 +93,7 @@ abstract class Document extends CompilerEngine implements DocumentInterface, Ren
 	public function title(String $title = null)
 	{
 		if(is_null($title)) {
-			return $this->title;
+			return General::option('_app_name_').' | '.$this->title;
 		}
 
 		$this->title = $title;
