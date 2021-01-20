@@ -4,7 +4,7 @@
 	<meta charset="{!! $this->getCharset() !!}">
 	<title>{!! $this->title() !!}</title>  
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
     <meta property="og:title" content="{{ $this->title() }}"> 
     <meta name="description" content="{{ $this->description() }}">
     <meta property="og:description" content="{{ $this->description() }}">
