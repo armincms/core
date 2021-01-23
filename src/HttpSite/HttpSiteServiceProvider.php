@@ -150,7 +150,8 @@ class HttpSiteServiceProvider extends ServiceProvider
                                 call_user_func([$router, $method], $component->route(), "ComponentController")
                                     ->where($component->wheres())
                                     ->where($key ?: '*', '.*')
-                                    ->name($component->name()); 
+                                    ->name($component->name())
+                                    ->middleware((array) $component->middlewares()); 
                             });  
 
                             // pass alll related route of site

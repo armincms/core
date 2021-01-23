@@ -42,6 +42,13 @@ abstract class Component extends Fluent
 	 */
 	protected $wheres = []; 
 
+	/**
+	 * Route Conditions of Component.
+	 * 
+	 * @var null
+	 */
+	protected $middlewares = []; 
+
 
 	public function route()
 	{  
@@ -135,6 +142,11 @@ abstract class Component extends Fluent
 	public function method()
 	{
 		return 'get';
+	}
+
+	public function middlewares()
+	{
+		return $this->middlewares;
 	}
 
 	abstract public function toHtml(Request $request, Document $document) : string;
