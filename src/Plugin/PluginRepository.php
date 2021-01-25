@@ -58,6 +58,8 @@ class PluginRepository
 
     protected function pluginDirectories()
     {
+        if(! $this->files->exists(plugin_path())) return [];
+
     	return tap($this->files->directories(plugin_path()), function($directories) {
             $vendors = Collection::make($directories)->mapWithKeys(function($directory) {
                 $namespace = studly_case($this->files->name($directory)); 

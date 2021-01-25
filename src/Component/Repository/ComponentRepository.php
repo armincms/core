@@ -60,6 +60,8 @@ class ComponentRepository
 	{
 		$folders = collect([]);
 
+		if(! File::exists(component_path())) return $folders;
+
 		foreach (File::directories(component_path()) as $path) {
 			$name = File::name($path);
 

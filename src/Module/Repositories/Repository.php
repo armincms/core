@@ -49,8 +49,8 @@ class Repository
     public function availableModules()
     {
         $modules = Collection::make($this->paths())->flatMap(function ($path) {
-            return $this->files->directories($path);
-        })->values()->map(function ($path) {  
+            return $this->files->exists($path) ? $this->files->directories($path) : null;
+        })->filter()->values()->map(function ($path) {  
         	$name = $this->files->basename($path); 
         	$module = studly_case($name); 
         	$namespace = "Module\\{$module}";  

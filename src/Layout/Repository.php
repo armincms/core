@@ -43,8 +43,8 @@ class Repository
     public function getLayoutFiles()
     {
         return Collection::make($this->paths())->flatMap(function ($path) {
-            return $this->files->directories($path);
-        })->values()->mapWithKeys(function ($path) {   
+            return $this->files->exists($path) ? $this->files->directories($path) : null;
+        })->filter()->values()->mapWithKeys(function ($path) {   
             return [$this->files->basename($path) => $path];
         })->filter();
     }
