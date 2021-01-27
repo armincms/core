@@ -209,7 +209,7 @@ class ModuleForm extends ResourceForm implements TabForm
         $form
             ->raw('<div class=columns><div class=six-columns>')
             ->field('select', 'params[_config][_effect][effect]', false, 'module::title.effect', 
-                array_combine($this->effects, $this->effects)
+                array_merge(['' => __('Select')], array_combine($this->effects, $this->effects))
             )
             ->field('select', 'params[_config][_effect][delay]', false, 'module::title.delay', 
                 array_combine($this->delays, $this->delays)
