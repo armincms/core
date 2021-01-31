@@ -64,11 +64,13 @@ class HtmlDocument extends Document implements Htmlable, Arrayable
 	}
 
 	public function toHtml()
-	{   
+	{    
 		$this->loadTemplatePlugins();
 		$this->loadTemplateStyleSheets();
 		$this->loadModulePlugins();
 		$this->loadModulesStyleSheet();
+
+		event(new Events\Rendering($this)); 
 
 		return $this->template->setBody($this->content)->setModules($this->modules())->toHtml(); 
 	} 
