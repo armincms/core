@@ -34,7 +34,7 @@
         	@break
       @endswitch
 	>
-	@empty(trim(Request::path(), '/'))<h1 class="hidden">{{ $this->title() }}</h1>@endif
+	@empty(trim(Request::path(), '/'))<h1 class="hidden">{{ \Armincms\Nova\General::option('_app_title_') }}</h1>@endif
 	@include('template::front.body') 
 	
  
