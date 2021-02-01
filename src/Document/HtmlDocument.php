@@ -29,7 +29,7 @@ class HtmlDocument extends Document implements Htmlable, Arrayable
 	 */
 	protected $metas = []; 
 
-	public function direction(String $direction = null)
+	public function direction(string $direction = null)
 	{  
 		if(is_null($direction)) {
 			return $this->direction;
@@ -40,9 +40,16 @@ class HtmlDocument extends Document implements Htmlable, Arrayable
 		return $this;
 	}  
 
-	public function meta(String $key, String $value = null, array $options = null)
+	public function meta(string $key, string $value = null, array $options = null)
 	{
 		$this->metas[] = HtmlMeta::meta($key, $value, $options);
+
+		return $this;
+	}
+
+	public function pushMeta(Htmlable $meta)
+	{
+		$this->metas[] = $meta;
 
 		return $this;
 	}
