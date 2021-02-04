@@ -43,7 +43,7 @@ class ComponentController extends SiteController
         return tap($message, function($message) use ($document) {  
             $document->title($message);
             $document->description($message); 
-            $document->keywords('keywords', $message);
+            $document->keywords($message);
         });  
     }
 

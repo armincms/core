@@ -8,14 +8,11 @@ class WebsiteController extends SiteController
 {  
     public function getContent(SiteRequest $request, Document $document)
     {  
-    	$site = $request->site();
-    	$description = $this->getSiteDescription($site);
-    	$title 	= $this->getSiteTitle($site);
-    	$tags 	= $this->getSiteKeywords($site); 
+    	$site = $request->site(); 
 
-        $document->title($title);
-        $document->description($description); 
-        $document->keywords('keywords', $tags); 
+        $document->title($this->getSiteTitle($site));
+        $document->description($this->getSiteDescription($site)); 
+        $document->keywords($this->getSiteKeywords($site)); 
 
         return '';
     }
