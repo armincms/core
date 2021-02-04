@@ -3,9 +3,7 @@ namespace Core\Document;
  
 use Core\Template\Contracts\Template;
 use Core\Document\Contracts\HtmlMetaBuilder;
-use Core\Document\Concerns\IntractsWithPlugin; 
-use Core\Document\Concerns\IntractsWithModule;
-use Core\Document\Concerns\IntractsWithTemplate;
+use Core\Document\Concerns\{IntractsWithPlugin, IntractsWithModule, IntractsWithTemplate, InteractsWithMetaData};
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Contracts\Support\Arrayable; 
 use HtmlMeta;
@@ -13,7 +11,7 @@ use HtmlPlugin;
 
 class HtmlDocument extends Document implements Htmlable, Arrayable
 {     
-	use IntractsWithPlugin, IntractsWithModule, IntractsWithTemplate;
+	use InteractsWithMetaData,  IntractsWithPlugin, IntractsWithModule, IntractsWithTemplate;
 
 	/**
 	 * Document Direction.
@@ -21,13 +19,6 @@ class HtmlDocument extends Document implements Htmlable, Arrayable
 	 * @var string
 	 */
 	protected $direction = 'rtl';  
-
-	/**
-	 * List Of Html Meta.
-	 * 
-	 * @var string
-	 */
-	protected $metas = []; 
 
 	public function direction(string $direction = null)
 	{  
@@ -40,24 +31,6 @@ class HtmlDocument extends Document implements Htmlable, Arrayable
 		return $this;
 	}  
 
-	public function meta(string $key, string $value = null, array $options = null)
-	{
-		$this->metas[] = HtmlMeta::meta($key, $value, $options);
-
-		return $this;
-	}
-
-	public function pushMeta(Htmlable $meta)
-	{
-		$this->metas[] = $meta;
-
-		return $this;
-	}
-
-	public function getMetaString()
-	{
-		return collect($this->metas)->filter()->implode('');
-	}
 
 	public function toArray()
 	{

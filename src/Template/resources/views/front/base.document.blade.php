@@ -2,16 +2,10 @@
 <html lang="{!! $this->getLocale() !!}" dir="{!! $this->direction() !!}">
 <head>  
 	<meta charset="{!! $this->getCharset() !!}">
-	<title>{!! $this->title() !!}</title>  
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <meta property="og:title" content="{{ $this->title() }}"> 
-    <meta name="description" content="{{ $this->description() }}">
-    <meta property="og:description" content="{{ $this->description() }}">
-    <meta name="csrf-token" content="{{ csrf_token() }}"> 
-
+	<title>{!! $this->title() !!}</title>    
 	{!! $this->getMetaString() !!}  
 	{!! $this->headerAssets()->map->toHtml()->implode('') !!}  
+    <meta name="csrf-token" content="{{ csrf_token() }}"> 
 </head>
 
 @var($background = (array) $this->setting("background"))   

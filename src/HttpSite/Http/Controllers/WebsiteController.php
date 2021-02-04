@@ -9,20 +9,18 @@ class WebsiteController extends SiteController
     public function getContent(SiteRequest $request, Document $document)
     {  
     	$site = $request->site();
-    	$description = $this->getDescription($site);
-    	$title 	= $this->getTitle($site);
-    	$tags 	= $this->getTags($site); 
+    	$description = $this->getSiteDescription($site);
+    	$title 	= $this->getSiteTitle($site);
+    	$tags 	= $this->getSiteKeywords($site); 
 
         $document->title($title);
-        $document->description($description);
-        $document->meta('title', $title); 
-        $document->meta('description', $description); 
-        $document->meta('keywords', $tags); 
+        $document->description($description); 
+        $document->keywords('keywords', $tags); 
 
         return '';
     }
 
-    public function getTitle($site)
+    public function getSiteTitle($site)
     {
     	if($title = trim($site->title())) {
     		return $title;
@@ -31,7 +29,7 @@ class WebsiteController extends SiteController
         return $this->setting('_app_title_'); 
     }
 
-    public function getDescription($site)
+    public function getSiteDescription($site)
     { 
     	if($description = trim($site->description())) {
     		return $description;
@@ -41,7 +39,7 @@ class WebsiteController extends SiteController
         return $this->setting('_app_description_'); 
     }
 
-    public function getTags($site)
+    public function getSiteKeywords($site)
     {  
         return $this->setting('_app_tags_'); 
     }
