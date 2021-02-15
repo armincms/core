@@ -52,17 +52,7 @@ class TemplateMakeCommand extends LayoutMakeCommand
 
         $this->files->put(
             $this->rootPath("{$name}/{$name}.css") , $this->getDefaultCss()
-        ); 
-
-        $composerPath = $this->rootPath("{$name}/composer.json");
-        $composer = array_merge( 
-            json_decode(\File::get($composerPath), true),
-            ['require' => ["armin-cms/plugin-bootstrap" .($this->isRtl() ? '-rtl' : '') => ".*"]]
-        ); 
-
-        File::put(
-            $composerPath, str_replace('\/', '/', json_encode($composer, JSON_PRETTY_PRINT)) 
-        ); 
+        );  
     }  
 
 
