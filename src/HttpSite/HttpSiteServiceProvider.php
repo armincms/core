@@ -45,7 +45,7 @@ class HttpSiteServiceProvider extends ServiceProvider
      */
     public function boot()
     {  
-        // $this->loadViewsFrom(__DIR__.'/resources/views', 'http-site');      
+        $this->loadViewsFrom(__DIR__.'/resources/views', 'http-site');      
         // $this->loadTranslationsFrom(__DIR__.'/resources/lang', 'http-site'); 
         // $this->loadMigrationsFrom(__DIR__.'/database/migrations'); 
         $this->mergeConfigFrom(__DIR__.'/config.php', 'http-site'); 

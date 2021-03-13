@@ -40,10 +40,14 @@ class ComponentController extends SiteController
         $message = $exception->getMessage().($exception->getCode() < 100 ? '#'.$exception->getCode() : '');
         $this->status = $this->getStatusCode($exception);
 
+        if($this->status == 404) {
+            $message = (string) view('http-site::errors.404');
+        }
+
         return tap($message, function($message) use ($document) {  
-            $document->title($message);
-            $document->description($message); 
-            $document->keywords($message);
+            $document->title($this->status === 404 ? 'Page Not Found' : $message);
+            $document->description($this->status === 404 ? 'Page Not Found' : $message); 
+            $document->keywords($this->status === 404 ? 'Page Not Found' : $message);
         });  
     }
 
