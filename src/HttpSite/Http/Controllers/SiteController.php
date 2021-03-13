@@ -48,7 +48,7 @@ abstract class SiteController extends Controller
             $document->setContent($content); 
             
             $document->setModules(
-                $this->getModules($this->request, $site, $this->hasError()? null : $component)
+                $this->hasError() ? [] : $this->getModules($this->request, $site, $component)
             );
 
             $document->setTemplate($template = $this->request->template());  
