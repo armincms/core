@@ -173,7 +173,7 @@ class Site
 
 	public function components()
 	{ 
-		return collect($this->components);
+		return collect($this->components)->keyBy->name();
 	} 
 
 	public function component(string $component)
