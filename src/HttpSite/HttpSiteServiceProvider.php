@@ -133,7 +133,14 @@ class HttpSiteServiceProvider extends ServiceProvider
                     app('router') 
                         ->domain(UrlHelper::assertDefaultHost($domain)? '' : $domain)
                         ->prefix($site->directory())
-                        ->middleware($site->middlewares()->toArray())
+                        ->middleware(array_merge([
+                            \App\Http\Middleware\EncryptCookies::class,
+                            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+                            \Illuminate\Session\Middleware\StartSession::class,
+                            // \Illuminate\Session\Middleware\AuthenticateSession::class,
+                            \Illuminate\View\Middleware\ShareErrorsFromSession::class, 
+                            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+                        ], $site->middlewares()->toArray()))
                         ->namespace(__NAMESPACE__.'\Http\Controllers')
                         ->name($site->name(). '.')
                         ->group(function($router) use ($site) { 
