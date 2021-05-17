@@ -38,8 +38,8 @@
 				placeholder="@trans('titles.search')"> 
 	</div>
 	<dl class="accordion same-height">  
-		@foreach($menuables as $key => $value) 
-			@var($title = array_get($value, 'title', $key))
+		@foreach($menuables as $group => $value) 
+			@var($title = array_get($value, 'title', $group))
 			@var($callback = array_get($value, 'callback'))  
 			@continue(! is_callable($callback)) 
 			@var($items = call_user_func_array($value['callback'], [$resource]))
@@ -54,8 +54,8 @@
 							{!! 
 								armin_dropdown($items, function($item) {  
 										return (array) array_get($item, 'childs', []);
-									}, function($item, $childs) { 
-									echo view('menu::item', compact('item', 'childs'))->render(); 
+									}, function($item, $childs) use ($group) { 
+									echo view('menu::item', compact('item', 'childs', 'group'))->render(); 
 								})
 							!!} 
 						</div>
