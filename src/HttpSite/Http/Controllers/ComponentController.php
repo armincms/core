@@ -2,7 +2,8 @@
 namespace Core\HttpSite\Http\Controllers; 
  
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use \Illuminate\Validation\ValidationException;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Core\HttpSite\Contracts\SiteRequest; 
 use Core\Document\Document;
@@ -16,7 +17,7 @@ class ComponentController extends SiteController
             abort_if(is_null($component = $request->component()), 404, 'Not Found Component'); 
             
             return (string) $component->toHtml($request, $document);  
-        } catch (ValidationException $exception) {   
+        } catch (ValidationException | AuthenticationException $exception) {   
             throw $exception; 
         } catch (Exception $exception) {   
 
