@@ -152,12 +152,12 @@ class Site
 	public function template(string $template = null)
 	{
 		if(is_null($template)) { 
-			return empty($this->template) ? default_template() : $this->template;
+			$this->template = $this->template ?: default_template();
+		} else {  
+			$this->template = $template;
 		}
 
-		$this->template = $template;
-
-		return $this;
+		return $this->template;
 	} 
 
 	public function pushComponent(Component $component, Closure $callback = null)
