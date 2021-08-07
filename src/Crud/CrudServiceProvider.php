@@ -321,12 +321,14 @@ class CrudServiceProvider extends ServiceProvider
 
     function registerTranslatableFields()
     {      
-        $this->registerSelects();  
-        $this->registerInputs();  
-        $this->registerFileInpus();  
-        $this->registerButtons();  
-        $this->registerCheckables();  
-        $this->registerUploaders();  
+        \Event::listen(Http\Middleware\ServeCore::class, function() {
+            $this->registerSelects();  
+            $this->registerInputs();  
+            $this->registerFileInpus();  
+            $this->registerButtons();  
+            $this->registerCheckables();  
+            $this->registerUploaders();   
+        });
     } 
 
     function registerFileInpus()
