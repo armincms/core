@@ -112,7 +112,7 @@ class HttpSiteServiceProvider extends ServiceProvider
         $this->excepts[] = trim(Nova::path(), '/');
         $this->excepts[] = trim(Nova::path(), '/').'/*'; 
 
-        if($this->app->runningInConsole() || request()->is($this->excepts)) { 
+        if(request()->is($this->excepts) || $this->app->routesAreCached()) { 
             return; 
         }   
  
