@@ -41,30 +41,9 @@ class UserServiceProvider extends ServiceProvider
      * @return void
      */
     public function register()
-    {       
-        $this->registerResources(); 
+    {         
         $this->registerMacros(); 
-    }
-
-    public function registerResources()
-    {
-        $this->app->extend('armin.resource', function($resources) { 
-            $menu = \Menu::get('bigMenu')->add(
-                'user-management::title.user_management', 
-                ['nickname' => 'user-management']
-            ); 
-
-            $resources->register(
-                'user-management/admin', Http\Controllers\AdminController::class
-            );  
-            $resources->register(
-                'user-management/user', Http\Controllers\UserController::class
-            );  
-
-            return $resources;
-        }); 
-        
-    }
+    } 
 
     public function setConfigurations()
     {

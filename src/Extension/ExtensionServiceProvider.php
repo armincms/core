@@ -19,15 +19,8 @@ class ExtensionServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot()
-    {       
-
-        // $this->loadViewsFrom(__DIR__.'/resources/views', 'extension'); 
-        $this->loadTranslationsFrom(__DIR__.'/resources/lang', 'extension'); 
-        // $this->loadMigrationsFrom(__DIR__.'/database/migrations');  
- 
-        // $this->mapAuthRoutes(); 
-
-        \Menu::get('bigMenu')->add('extension::title.extensions', ['nickname' => 'extension']);
+    {        
+        $this->loadTranslationsFrom(__DIR__.'/resources/lang', 'extension');  
           
     }
 

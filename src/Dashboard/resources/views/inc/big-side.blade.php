@@ -10,7 +10,7 @@
 		<!-- By default, this section is made for 4 icons, see the doc to learn how to change this, in "basic markup explained" -->
 		<ul id="access" class="children-tooltip">  
 			<li><a href="{{ url('/') }}" target="_blank" title=""><span class="icon-eye"></span></a></li>  
-			<li><a href="{{ route('admin.profile', [$user->id]) }}" title="@trans('titles.profile')"><span class="icon-user"></span></a></li> 
+			<li><a href="#!!" title="@trans('titles.profile')"><span class="icon-user"></span></a></li> 
 			<li><a href="{{ '#!'}}" title="@trans('titles.report')"><span class="icon-megaphone"></span></a></li> 
 
 

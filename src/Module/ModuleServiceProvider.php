@@ -37,13 +37,12 @@ class ModuleServiceProvider extends ServiceProvider
                         module_hint_key($name) , module_path($name)
                     );
                 });  
-            });        
+            });  
+        }       
 
-            \ArminResource::register('module', Http\Controllers\ModuleController::class, [
-                'except' => ['create', 'show']
-            ]);
-        } 
-
+        \ArminResource::register('module', Http\Controllers\ModuleController::class, [
+            'except' => ['create', 'show']
+        ]);
 
         \Config::set('armin.layout.paths.module', __DIR__.'/resources/layouts');
              

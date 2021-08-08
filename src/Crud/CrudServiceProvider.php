@@ -22,8 +22,11 @@ class CrudServiceProvider extends ServiceProvider
     {     
     	$this->loadViewsFrom(__DIR__.'/resources/views', 'admin-crud');
         $this->loadTranslationsFrom(__DIR__.'/resources/lang', 'admin-crud');  
-
-        $this->registerTranslatableFields();
+         
+        \Event::listen(\Core\Crud\Events\CoreServing::class, function() {  
+            $this->registerTranslatableFields();
+            $this->registerResourceRoutes();
+        }); 
 
         \Blade::directive('dropdown', function($args) {  
             return '<?php echo armin_dropdown(' . $args. '); ?>';
@@ -41,9 +44,7 @@ class CrudServiceProvider extends ServiceProvider
     public function register()
     {  
         $this->app->make(HttpKernel::class)
-                    ->pushMiddleware(Http\Middleware\ServeCore::class);
-
-        $this->registerResourceRoutes();    
+                    ->pushMiddleware(Http\Middleware\ServeCore::class);  
         
         $loader = AliasLoader::getInstance();
 
@@ -117,25 +118,23 @@ class CrudServiceProvider extends ServiceProvider
 
 
     protected function registerResourceRoutes()
-    {
-        $this->app->booted(function() {
-            $this->registerResourceCrud();
-            // $this->registerResourceApiCrud();
-            $this->registerResourceApi(); 
-        }); 
+    { 
+        $this->registerResourceCrud();
+        // $this->registerResourceApiCrud();
+        $this->registerResourceApi(); 
+
+        app('router')->getRoutes()->refreshNameLookups(); 
     }
 
     protected function registerResourceCrud()
-    {
+    {  
         $this->app['router']->middleware(
             config('admin.panel.middleware', ['web', 'auth:admin'])
         )
         ->prefix(config('admin.panel.path_prefix', 'panel').'/resources')
         ->group(function($router) {
 
-            $menu = \Menu::get('bigMenu')->add(
-                'admin-crud::title.resources', 'javascript::vois(0)'
-            );
+            $menu = \Menu::get('bigMenu');
 
             app('armin.resource')->all()->each(function($data, $name) use ($menu, $router) { 
                 $resource = $data['resource'];
@@ -188,27 +187,19 @@ class CrudServiceProvider extends ServiceProvider
                     $routes->register();     
 
                     \Route::model($resource->name(), get_class($resource->model())); 
-
-                    // if($parent = array_get($options, 'menu')) {
-                    //     optional(admin_menus()->find($parent))->add($resource->title(), [
-                    //         'route' => "{$name}.index" 
-                    //     ]);  
-                    // } else {
-                    // }   
                 });
 
                 $this->resolveResourceNavigation($resource, $menu);
             }); 
-        });  
-       // dd(app('router')->getRoutes()->get('PUT'));
+        }); 
     }
 
     public function resolveResourceNavigation($resource, $nav)
     {
         if($resource->navigable()) {   
-            if($group = $nav->builder->get($resource->navigationGroup())) {
-                $nav = $group;  
-            }
+            // if($group = $nav->builder->get($resource->navigationGroup())) {
+            //     $nav = $group;  
+            // }
 
  
             $nav->add($resource->title(), [
@@ -320,15 +311,13 @@ class CrudServiceProvider extends ServiceProvider
 
 
     function registerTranslatableFields()
-    {      
-        \Event::listen(Http\Middleware\ServeCore::class, function() {
-            $this->registerSelects();  
-            $this->registerInputs();  
-            $this->registerFileInpus();  
-            $this->registerButtons();  
-            $this->registerCheckables();  
-            $this->registerUploaders();   
-        });
+    {       
+        $this->registerSelects();  
+        $this->registerInputs();  
+        $this->registerFileInpus();  
+        $this->registerButtons();  
+        $this->registerCheckables();  
+        $this->registerUploaders();    
     } 
 
     function registerFileInpus()
