@@ -24,7 +24,6 @@ class CrudServiceProvider extends ServiceProvider
         $this->loadTranslationsFrom(__DIR__.'/resources/lang', 'admin-crud');  
 
         $this->registerTranslatableFields();
-        $this->registerResourceRoutes();  
 
         \Blade::directive('dropdown', function($args) {  
             return '<?php echo armin_dropdown(' . $args. '); ?>';
@@ -43,7 +42,8 @@ class CrudServiceProvider extends ServiceProvider
     {  
         $this->app->make(HttpKernel::class)
                     ->pushMiddleware(Http\Middleware\ServeCore::class);
-  
+
+        $this->registerResourceRoutes();    
         
         $loader = AliasLoader::getInstance();
 
@@ -117,11 +117,11 @@ class CrudServiceProvider extends ServiceProvider
 
 
     protected function registerResourceRoutes()
-    { 
-        \Event::listen(\Core\Crud\Events\CoreServing::class, function() { 
+    {
+        $this->app->booted(function() {
             $this->registerResourceCrud();
             // $this->registerResourceApiCrud();
-            $this->registerResourceApi();  
+            $this->registerResourceApi(); 
         }); 
     }
 
@@ -151,7 +151,7 @@ class CrudServiceProvider extends ServiceProvider
                         'as'    => "{$resource->name()}."
                     ], function($router) use ($resource, $data, $name, $slug) {
                         
-                        // $resource->resourcePermissions();
+                        $resource->resourcePermissions();
                         $resource->routes($router);
 
                         if(use_soft_deletes($resource->model())) {  
@@ -200,9 +200,6 @@ class CrudServiceProvider extends ServiceProvider
                 $this->resolveResourceNavigation($resource, $menu);
             }); 
         });  
-
-        $this->app['router']->getRoutes()->refreshNameLookups();
-        $this->app['router']->getRoutes()->refreshActionLookups();
        // dd(app('router')->getRoutes()->get('PUT'));
     }
 
@@ -324,7 +321,7 @@ class CrudServiceProvider extends ServiceProvider
 
     function registerTranslatableFields()
     {      
-        \Event::listen(\Core\Crud\Events\CoreServing::class, function() {
+        \Event::listen(Http\Middleware\ServeCore::class, function() {
             $this->registerSelects();  
             $this->registerInputs();  
             $this->registerFileInpus();  

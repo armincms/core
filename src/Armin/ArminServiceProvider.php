@@ -66,37 +66,33 @@ class ArminServiceProvider extends ServiceProvider
 
     public function map()
     {
-        if ($this->app->routesAreCached() || ! $this->app->runningInConsole()) return;
+    	$this
+    		->app['router']
+    		->middleware(['web', 'auth:admin'])
+    		->prefix(config('admin.panel.path_prefix', 'panel'))
+    		->namespace(__NAMESPACE__.'\Http\Controllers')
+    		->group(function($router) { 
+		        $menu = \Menu::get('bigMenu')->add('armin::title.setting', [
+		        	'url' => '#!', 'nickname' => 'setting'
+		        ]);
 
-        $this->app->booted(function() { 
-        	$this
-        		->app['router']
-        		->middleware(['web', 'auth:admin'])
-        		->prefix(config('admin.panel.path_prefix', 'panel'))
-        		->namespace(__NAMESPACE__.'\Http\Controllers')
-        		->group(function($router) { 
-    		        $menu = \Menu::get('bigMenu')->add('armin::title.setting', [
-    		        	'url' => '#!', 'nickname' => 'setting'
-    		        ]);
+                $router->post('general-setting/maintenance', 'SettingController@maintenance')
+                            ->name('maintenance');
+		        $router->post('general-setting', 'SettingController@update');
 
-                    $router->post('general-setting/maintenance', 'SettingController@maintenance')
-                                ->name('maintenance');
-    		        $router->post('general-setting', 'SettingController@update');
+		        $router->get('general-setting', [
+		        	'uses' 	=>'SettingController@edit',
+		        	'as' 	=> 'general-setting.edit',
+		        ]);
+		        $router->put('general-setting', [
+		        	'uses' 	=>'SettingController@update',
+		        	'as' 	=> 'general-setting.update',
+		        ]);
 
-    		        $router->get('general-setting', [
-    		        	'uses' 	=>'SettingController@edit',
-    		        	'as' 	=> 'general-setting.edit',
-    		        ]);
-    		        $router->put('general-setting', [
-    		        	'uses' 	=>'SettingController@update',
-    		        	'as' 	=> 'general-setting.update',
-    		        ]);
-
-    		        $menu->add('armin::title.general', [
-    		        	'route' => 'general-setting.edit', 'nickname' => 'general-setting'
-    		    	]);  
-        		}); 
-        });
+		        $menu->add('armin::title.general', [
+		        	'route' => 'general-setting.edit', 'nickname' => 'general-setting'
+		    	]);  
+    		});
     }
 
     public function registerExceptionHandler()
