@@ -1,8 +1,7 @@
 <?php 
 namespace Core\Module;
 
-use Illuminate\Database\Eloquent\Model;
-use Core\Log\Loggable;
+use Illuminate\Database\Eloquent\Model; 
 use Illuminate\Support\Facades\Log;
 use Helper;
 use Exception;
@@ -14,7 +13,7 @@ use Core\Crud\Concerns\Publishing;
 
 class ModuleInstance extends Model implements Publicatable
 {
-    use /*Loggable,*/ SoftDeletes, HasCustomImage, Publishing;
+    use SoftDeletes, HasCustomImage, Publishing;
 
     const SELECTION_MODE = 'selection';
     const REJECTION_MODE = 'rejection';

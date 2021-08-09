@@ -1,12 +1,9 @@
 <?php  
 namespace Core\Menu; 
-use Illuminate\Database\Eloquent\Model;
-use Core\Log\Loggable;
+use Illuminate\Database\Eloquent\Model; 
 
 class MenuItem extends Model
-{
-    use Loggable;
-
+{ 
     public $timestamps = false;
 
     protected $guarded = [];
