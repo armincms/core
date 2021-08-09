@@ -21,22 +21,21 @@ class FormServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot()
-    {       
-        $this->loadViewsFrom(__DIR__.'/resources/views', 'form');  
-
+    {        
         require __DIR__.DS.'helpers.php';
+        
+        \Config::set('annisa.form.default_component', 'ad');
 
         app('router')->middleware(config('admin.panel.middleware', ['web', 'auth:admin']))
                      ->prefix(config('admin.panel.path_prefix', 'panel'))
                      ->namespace(__NAMESPACE__.'\Http\Controllers') 
                      ->group(__DIR__.DS.'routes.php'); 
-        
 
-        $this->registerArminDeveloperComponents(); 
-
-        (new BSFormComponentRegisterar)->register();
-        
-        \Config::set('annisa.form.default_component', 'ad');
+        \Event::listen(\Core\Crud\Events\CoreServing::class, function() {
+            $this->loadViewsFrom(__DIR__.'/resources/views', 'form');   
+            $this->registerArminDeveloperComponents(); 
+            (new BSFormComponentRegisterar)->register();
+        });
     }
 
 
