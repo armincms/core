@@ -21,16 +21,8 @@ class ComponentServiceProvider extends ServiceProvider
         $this->commands(Console\ComponentMakeCommand::class); 
           
         foreach(components() as $componentName => $component) {  
-            if(class_exists($component->get('provider')) || \Helper::isSuperAdmin()) {
-                $provider = $this->app->register($component->get('provider'), [], true);    
-                 
-                $this->app->booted(function($app) use ($componentName) {  
-                    $app['armin.repository.component']->install($componentName); 
-                }); 
-            } else {
-                \Log::warning("Component {$componentName} unexpectedly removed"); 
-                $this->app['armin.repository.component']->forget();
-            }
+            class_exists($component->get('provider')) && 
+            $this->app->register($component->get('provider'), [], true); 
         }  
     } 
 }
