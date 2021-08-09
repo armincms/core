@@ -46,8 +46,8 @@ trait HasInternalLayout
         $layouts = is_array($layouts) ? $layouts : func_get_args();
 
         return collect($layouts)->map(function($name) {
-            return the_layout($name)->css();
-        })->flatten()->unique(function($asset) {
+            return the_layout($name);
+        })->filter()->map->css()->flatten()->unique(function($asset) {
             return $asset->path();
         })->all();
     }

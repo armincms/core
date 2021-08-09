@@ -22,7 +22,7 @@ class Factory
 	{
 		$module = $this->module($instance->module);
 
-		return new $module($instance);
+		return is_object($module) ? $module->setModule($instance) : new $module($instance);
 	}
 
 	public function module(string $name)
