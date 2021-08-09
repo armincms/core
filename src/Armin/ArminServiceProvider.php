@@ -53,7 +53,7 @@ class ArminServiceProvider extends ServiceProvider
         $this->app->register(\Core\Plugin\PluginServiceProvider::class);
         $this->app->register(\Core\Crud\CrudServiceProvider::class);
         $this->app->register(\Core\HttpSite\HttpSiteServiceProvider::class);
-        $this->app->register(\Core\Option\OptionServiceProvider::class);
+        // $this->app->register(\Core\Option\OptionServiceProvider::class);
         $this->app->register(\Core\Document\DocumentServiceProvider::class);
         // $this->app->register(\Core\Documentation\DocumentationServiceProvider::class);
         $this->app->register(\Core\App\AppServiceProvider::class);
