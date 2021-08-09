@@ -1,6 +1,8 @@
 <?php 
-namespace Core\Document\Concerns; 
 
+namespace Core\Document\Concerns;
+
+use Illuminate\Support\Facades\Cache; 
 
 trait IntractsWithModule
 { 
@@ -35,12 +37,17 @@ trait IntractsWithModule
 	}  
 
 	public function renderedModules($position = null)
-	{ 
-		if(! isset($this->renderedModules[$position])) {
-			$this->renderedModules[$position] = $this->modules($position)->map->toHtml()->implode('');
-		} 
+	{  
+		return $this->getCachedRenderedModules($position); 
+	}
 
-		return $this->renderedModules[$position]; 
+	public function getCachedRenderedModules($position = null)
+	{
+		$cacheKey = md5($this->modules($position)->map->get('id')).$position;
+
+		return Cache::remember($cacheKey, 10, function() use ($position) { 
+			return $this->modules($position)->map->toHtml()->implode('');
+		});
 	}
 
 	public function loadModulePlugins()
