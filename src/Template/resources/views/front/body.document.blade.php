@@ -16,7 +16,7 @@
 		@var($width = $this->containerWidth($section))
 		@if($renderedModules = $this->renderedModules($section))
 			@component('template::front.container', compact('section', 'width')) 
-				{!! $this->renderedModules($section) !!}
+				{!! $renderedModules !!}
 			@endcomponent
 		@endif
 	@endcomponent
@@ -27,7 +27,7 @@
 			@component('template::front.section', compact('section')) 
 				@var($width = $this->containerWidth($section))
 				@component('template::front.container', compact('section', 'width')) 
-					{!! $this->renderedModules($section) !!}
+					{!! $renderedModules !!}
 				@endcomponent
 			@endcomponent
 		@endif
@@ -41,7 +41,7 @@
 			@component('template::front.section', compact('section'))
 				@var($width = $this->containerWidth($section))
 				@component('template::front.container', compact('section', 'width')) 
-					{!! $this->renderedModules($section) !!}
+					{!! $renderedModules !!}
 				@endcomponent
 			@endcomponent
 		@endif
@@ -52,7 +52,7 @@
 		@component('template::front.section', compact('section'))
 			@var($width = $this->containerWidth($section))
 			@component('template::front.container', compact('section', 'width')) 
-				{!! $this->renderedModules($section) !!}
+				{!! $renderedModules !!}
 			@endcomponent
 		@endcomponent
 	@endif
