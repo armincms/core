@@ -49,9 +49,14 @@ class ModuleInstance extends Model implements Publicatable
         self::saved(function($model) {
             new CssWriter(self::get());
 
-            \Cache::forget("module{$model->id}");
+            \Cache::forget($model->cacheKey());
         });
     }  
+
+    public function cacheKey()
+    {
+        return "module{$module->getKey()}.rendered";
+    }
 
     /**
      * Create a new Eloquent Collection instance.

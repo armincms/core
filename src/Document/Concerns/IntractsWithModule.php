@@ -32,7 +32,7 @@ trait IntractsWithModule
 	public function renderedModules($position = null)
 	{  
 		return $this->modules($position)->map(function($module) { 
-			return Cache::sear("module{$module->get('id')}.rendered", function() use ($module) {
+			return Cache::sear($module->getModule()->cacheKey(), function() use ($module) {
 				return $module->toHtml();
 			});
 		})->implode('');
