@@ -11,14 +11,7 @@ trait IntractsWithModule
 	 * 
 	 * @var array
 	 */
-	protected $modules = []; 
-
-	/**
-	 * Rendered Modules.
-	 * 
-	 * @var array
-	 */
-	protected $renderedModules = [];      
+	protected $modules = [];       
 
 	public function setModules(array $modules)
 	{
@@ -31,23 +24,18 @@ trait IntractsWithModule
 	{  
 		return collect($this->modules)->filter(function($module) use ($positions) { 
 			return is_null($positions) || in_array($module->get('position'), (array) $positions);
-		})->sortBy(function($module) {
+		})->unique->get('id')->sortBy(function($module) {
 			return $module->get('ordering');
 		});
 	}  
 
 	public function renderedModules($position = null)
 	{  
-		return $this->getCachedRenderedModules($position); 
-	}
-
-	public function getCachedRenderedModules($position = null)
-	{
-		$cacheKey = md5($this->modules($position)->map->get('id')).$position;
-
-		return Cache::remember($cacheKey, 10, function() use ($position) { 
-			return $this->modules($position)->map->toHtml()->implode('');
-		});
+		return $this->modules($position)->map(function($module) { 
+			return Cache::sear("module{$module->get('id')}.rendered", function() use ($module) {
+				return $module->toHtml();
+			});
+		})->implode('');
 	}
 
 	public function loadModulePlugins()
