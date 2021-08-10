@@ -46,10 +46,12 @@ class ModuleInstance extends Model implements Publicatable
     {
         parent::boot();
 
-        self::saved(function() {
+        self::saved(function($model) {
             new CssWriter(self::get());
+
+            \Cache::forget("module{$model->id}");
         });
-    } 
+    }  
 
     /**
      * Create a new Eloquent Collection instance.
