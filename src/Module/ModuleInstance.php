@@ -55,7 +55,7 @@ class ModuleInstance extends Model implements Publicatable
 
     public function cacheKey()
     {
-        return "module{$module->getKey()}.rendered";
+        return "module{$this->getKey()}.rendered";
     }
 
     /**
