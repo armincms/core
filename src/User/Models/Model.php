@@ -11,11 +11,12 @@ use Illuminate\Contracts\Auth\Authenticatable as Auth;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Zareismail\NovaPolicy\Concerns\InteractsWithPolicy; 
+use Illuminate\Notifications\Notifiable;
 
 class Model extends LaravelModel implements Publicatable, Auth 
 { 
 	use SoftDeletes, Publishing, Metable, FluentAccess, Authenticatable, Authorizable; 
-	use InteractsWithPolicy;
+	use InteractsWithPolicy, Notifiable;
  
 	protected $guarded = [];
 	protected $casts = []; 
