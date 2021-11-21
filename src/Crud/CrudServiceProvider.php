@@ -22,8 +22,11 @@ class CrudServiceProvider extends ServiceProvider
     {     
     	$this->loadViewsFrom(__DIR__.'/resources/views', 'admin-crud');
         $this->loadTranslationsFrom(__DIR__.'/resources/lang', 'admin-crud');  
-         
-        $this->registerResourceRoutes();
+        
+        $this->app->booted(function() {
+            $this->registerResourceRoutes(); 
+        });
+        
         \Event::listen(\Core\Crud\Events\CoreServing::class, function() {  
             $this->registerTranslatableFields();
         }); 
