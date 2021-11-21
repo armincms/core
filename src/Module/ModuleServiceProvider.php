@@ -12,13 +12,6 @@ use View;
 class ModuleServiceProvider extends ServiceProvider
 {     
     /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = true;
-
-    /**
      * Define your route model bindings, pattern filters, etc.
      * 
      * @return void
@@ -80,12 +73,4 @@ class ModuleServiceProvider extends ServiceProvider
             return new Repositories\Repository($app['files']);
         }); 
     } 
- 
-    public function provides()
-    {
-        return [
-            'armin.repository.module', 'armin.instance.module', 'module', 
-            'module.instance', 'module.repository'
-        ];
-    }
 }
