@@ -23,11 +23,7 @@ class ModuleController extends Resource implements PublicatableResource
     public function title()
     {
         return 'module::title.modules';
-    } 
-    public function navigationGroup()
-    {
-        return 'extension';
-    } 
+    }  
 
     public function columns()
     {

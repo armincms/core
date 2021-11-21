@@ -31,11 +31,7 @@ class ModuleServiceProvider extends ServiceProvider
                     );
                 });  
             });  
-        }       
-
-        \ArminResource::register('module', Http\Controllers\ModuleController::class, [
-            'except' => ['create', 'show']
-        ]);
+        }    
 
         \Config::set('armin.layout.paths.module', __DIR__.'/resources/layouts');
              
@@ -71,6 +67,10 @@ class ModuleServiceProvider extends ServiceProvider
 
         $this->app->bind('module.repository', function($app) {
             return new Repositories\Repository($app['files']);
-        }); 
+        });    
+
+        \ArminResource::register('module', Http\Controllers\ModuleController::class, [
+            'except' => ['create', 'show']
+        ]);
     } 
 }
