@@ -57,7 +57,7 @@ class ArminServiceProvider extends ServiceProvider
         $this->app->register(\Core\Document\DocumentServiceProvider::class);
         // $this->app->register(\Core\Documentation\DocumentationServiceProvider::class);
         $this->app->register(\Core\App\AppServiceProvider::class);
-        // $this->app->register(\Core\FileManager\FileManagerServiceProvider::class);
+        $this->app->register(\Core\FileManager\FileManagerServiceProvider::class);
         $this->app->register(\Core\Menu\MenuServiceProvider::class);
         // $this->app->register(\Core\Setting\SettingServiceProvider::class);
         $this->app->register(\Core\Language\LanguageServiceProvider::class);
