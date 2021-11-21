@@ -13,7 +13,8 @@
         "files": [
             "src/Plugin/functions.php",
             "src/Option/helpers.php",
-            "src/Armin/functions.php"
+            "src/Armin/functions.php",
+            "src/Crud/functions.php"
         ],
         "psr-4": {  
             "Core\\": "src/"
@@ -34,5 +35,5 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "version": "1.13.0"
+    "version": "1.13.2"
 }
