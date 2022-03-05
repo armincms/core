@@ -8,7 +8,7 @@
     "license": "MIT",
     "require": {
         "php": ">=7.1.0",
-        "spatie/laravel-responsecache": "^6.6"
+        "spatie/laravel-responsecache": "^6.0"
     },
     "autoload": {
         "files": [
@@ -36,5 +36,5 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "version": "1.14.1"
+    "version": "1.14.2"
 }
