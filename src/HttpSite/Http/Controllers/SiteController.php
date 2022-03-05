@@ -21,7 +21,8 @@ abstract class SiteController extends Controller
 
     public function __construct(SiteRequest $request)
     {
-        $this->request= $request;  
+        $this->request= $request;
+        $this->middleware(\Spatie\ResponseCache\Middlewares\CacheResponse::class);  
     } 
 
     /**

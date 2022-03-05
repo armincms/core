@@ -31,11 +31,7 @@ trait IntractsWithModule
 
 	public function renderedModules($position = null)
 	{  
-		return $this->modules($position)->map(function($module) { 
-			return Cache::sear($module->getModule()->cacheKey(), function() use ($module) {
-				return $module->toHtml();
-			});
-		})->implode('');
+		return $this->modules($position)->map->toHtml()->implode('');
 	}
 
 	public function loadModulePlugins()
